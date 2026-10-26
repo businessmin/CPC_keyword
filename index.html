@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>우리가게클릭 키워드형 신청 방법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#F1F4F7;font-family:'Noto Sans KR',-apple-system,sans-serif;color:#1B232B;word-break:keep-all;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;border:0;background:none;cursor:pointer;color:inherit}
+.wrap{display:grid;grid-template-columns:auto 340px;gap:44px;justify-content:center;align-items:center;padding:20px 16px;min-height:100vh}
+.wrap.pre{grid-template-columns:auto}
+.wrap.pre .side{display:none}
+@media(max-width:599px){
+ .wrap{grid-template-columns:1fr;gap:14px;justify-items:center;align-content:start;padding:14px 16px}
+ .side{order:-1;width:100%}
+}
+/* coach */
+.side{max-width:340px}
+.coach{background:#fff;border-radius:18px;padding:22px 22px 20px;box-shadow:0 6px 24px rgba(27,35,43,.08)}
+.coach .lb{display:inline-block;background:#DFF5F4;color:#0E9C96;font-weight:800;font-size:13px;padding:4px 10px;border-radius:999px;margin-bottom:12px;letter-spacing:.3px}
+.coach .tx{font-weight:700;font-size:clamp(15px,1.8vw,18px);line-height:1.55}
+.coach .nt{white-space:pre-line;margin-top:12px;font-size:13.5px;color:#56616B;line-height:1.55;background:#F5F7F9;border-radius:10px;padding:10px 12px}
+.coach .nt:empty,.coach .nt2:empty{display:none}
+.coach .nt2{margin-top:12px;font-size:clamp(14px,1.6vw,16px);font-weight:700;line-height:1.55}
+.again{display:block;margin:14px auto 0;font-size:13px;color:#7A858F;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:599px){.coach{padding:16px 18px}.coach .lb{margin-bottom:8px}.again{margin-top:8px}}
+/* device */
+.devBox{position:relative}
+.device{position:absolute;left:0;top:0;width:376px;height:706px;background:#1B232B;border-radius:36px;padding:8px;transform-origin:0 0;box-shadow:0 18px 40px rgba(27,35,43,.18)}
+.screen{position:relative;width:360px;height:690px;border-radius:28px;overflow:hidden;background:#fff}
+.view{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.3,.7,.2,1)}
+.view.off{transform:translateX(100%)}
+.view.offL{transform:translateX(-30%)}
+.sc{position:relative;flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+.sc::-webkit-scrollbar{display:none}
+/* header/footer */
+.hd{position:relative;height:56px;flex:none;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #EEF0F2;background:#fff}
+.hd .x{position:absolute;left:16px;top:16px;width:24px;height:24px}
+.hd .t{font-size:16px;font-weight:500;text-align:center;line-height:1.2}
+.hd .t small{display:block;font-size:12px;color:#7A858F;margin-top:3px}
+.hd .t small b{color:#1B232B}
+.hd .bar{position:absolute;left:0;bottom:-1px;height:2px;background:#1B232B}
+.ft{height:76px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-top:1px solid #EEF0F2;background:#fff}
+.ft .prev{display:flex;align-items:center;gap:6px;color:#2B7BF2;font-size:16px;font-weight:500;padding:8px}
+.ft .go{background:#2B7BF2;color:#fff;font-size:16px;font-weight:500;height:48px;border-radius:6px;padding:0 24px;min-width:106px}
+/* cover */
+.cover{align-items:center;justify-content:center;background:#fff;text-align:center;padding:0 28px}
+.cover .c1{font-size:20px;font-weight:700;color:#2B7BF2}
+.cover .c2{font-size:34px;font-weight:800;margin-top:6px;letter-spacing:-.5px}
+.cover .c3{font-size:22px;font-weight:700;color:#56616B;margin-top:6px}
+.cover .startB{margin-top:40px;background:#12B5AE;color:#fff;font-size:17px;font-weight:700;height:54px;width:220px;border-radius:12px}
+/* step1 */
+.pg{padding:20px 16px 28px}
+.h1{font-size:20px;font-weight:700;line-height:1.4}
+.cnt{font-size:14px;font-weight:500;margin:22px 0 20px}
+.cnt span{color:#7A858F;font-weight:400}
+.card{border:1px solid #E1E4E8;border-radius:8px;margin-bottom:24px;position:relative;background:#fff}
+.crow{display:flex;align-items:center;gap:8px;padding:18px 16px 14px}
+.crow .nm{font-size:16px;font-weight:700;display:flex;align-items:center;gap:6px}
+.crow .pr{margin-left:auto;color:#2B7BF2;font-size:12px}
+.crow .pr b{font-size:16px;font-weight:700}
+.strip{background:#F6F7F9;padding:10px 16px;font-size:13px;display:flex;gap:14px;flex-wrap:wrap}
+.strip span{display:flex;align-items:center;gap:4px}
+.lst{padding:10px 16px 14px}
+.lst li{list-style:none;font-size:12px;color:#33404B;line-height:1.75;display:flex;gap:6px;align-items:flex-start}
+.lst li.g{color:#0E9C96}
+.lst li svg{flex:none;margin-top:5px}
+.lst .n{font-size:10.5px;color:#8A949E;margin-top:6px}
+.banner{background:#E6E3FF;color:#5B3FE0;border-radius:0 0 8px 8px;padding:10px 16px;font-size:12px;position:relative}
+.banner b{display:flex;align-items:center;gap:5px;font-size:12.5px;margin-bottom:2px}
+.banner .ar{position:absolute;right:16px;top:50%;transform:translateY(-50%)}
+.cb{width:24px;height:24px;border:1.5px solid #C8CDD2;border-radius:4px;background:#fff;flex:none;display:flex;align-items:center;justify-content:center;transition:.2s}
+.cb svg{opacity:0;transition:.2s}
+.cb.on{background:#2B7BF2;border-color:#2B7BF2}
+.cb.on svg{opacity:1}
+.qm{width:14px;height:14px}
+.tagBlack{position:absolute;top:-12px;left:18px;background:#1B232B;color:#fff;font-size:11.5px;padding:3px 9px;border-radius:4px}
+.sub{background:#F3F4F6;border:1px solid #E1E4E8;border-radius:8px;margin:0 16px 12px;padding:0 0 4px;transition:border-color .2s,background .2s}
+.sub.on{border-color:#2B7BF2;background:#F2F7FF}
+.sub .crow{padding:16px 16px 12px}
+.sub .crow .nm{font-size:15px}
+.sub .w{background:#fff;margin:0 16px;padding:9px 10px;font-size:13px;display:flex;align-items:center;gap:6px;border-radius:2px}
+.sub .lst{padding:8px 16px 8px}
+.ad{font-size:8px;font-weight:800;border:1.3px solid #1B232B;border-radius:2px;padding:0 2px;line-height:11px}
+.foot{font-size:11px;color:#8A949E;text-align:right;padding:4px 16px 18px}
+/* step2 settings */
+.sec{margin-top:32px}
+.secT{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin-bottom:12px}
+.secT i{font-style:normal;background:#1B232B;color:#fff;width:18px;height:18px;border-radius:3px;font-size:11px;display:flex;align-items:center;justify-content:center}
+.secT small{font-size:11px;color:#7A858F;font-weight:400}
+.kwBox{background:#F6F7F9;border:1px solid #DDE1E5;border-radius:4px;height:300px;overflow-y:auto;padding:10px 10px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.chip{height:36px;padding:0 14px;border:1px solid #D5D9DE;border-radius:18px;background:#fff;font-size:13.5px;color:#33404B;display:flex;align-items:center;gap:4px;transition:transform .12s,background .15s}
+.chip:active{transform:scale(.95)}
+.chip svg{display:none}
+.chip.on{border-color:#2B7BF2;color:#2B7BF2;background:#EEF5FF}
+.chip.on svg{display:block}
+.kwNote{display:flex;gap:10px;font-size:12px;color:#56616B;margin-top:8px;line-height:1.55}
+.kwNote b{color:#33404B}
+.kwNote .ct30{margin-left:auto;flex:none;font-size:13px}
+.kwNote .ct30 b{color:#2B7BF2}
+.mode{border-radius:8px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px;display:block;width:100%;text-align:left;background:#fff;position:relative;transition:border-color .2s}
+.mode .mt{font-size:16px;font-weight:700;display:flex;align-items:center;gap:6px}
+.mode .md{font-size:11.5px;color:#56616B;margin-top:5px;line-height:1.5;padding-right:30px}
+.mode .badge{display:inline-flex;align-items:center;gap:4px;background:#DCEBFF;color:#2B7BF2;font-size:11.5px;padding:2px 6px;border-radius:3px;margin-top:6px}
+.rd{position:absolute;right:16px;top:16px;width:24px;height:24px;border-radius:50%;border:1.5px solid #C8CDD2;background:#fff;transition:.2s}
+.mode.on .rd{border:7px solid #2B7BF2}
+.mode.on.smart{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#36D6C9,#B868FF) border-box}
+.mode.on.manual{border-color:#2B7BF2}
+.fld{display:flex;align-items:center;height:48px;border:1px solid #DDE1E5;border-radius:4px;padding:0 14px;font-size:14px;margin-bottom:10px;background:#fff;transition:border-color .2s,box-shadow .2s}
+.fld .lb{color:#56616B;flex:none}
+.fld .val{margin-left:auto;display:flex;align-items:center;font-size:15px}
+.fld .ph{color:#A9B1B8;font-size:14px}
+.fld .unit{margin-left:8px;color:#56616B}
+.fld .caret{display:none;width:1.5px;height:18px;background:#2B7BF2;margin-left:1px;animation:blink 1s steps(1) infinite}
+.fld.focus{border-color:#2B7BF2;box-shadow:0 0 0 2px rgba(43,123,242,.15)}
+.fld.focus .caret{display:block}
+.fld.focus .ph,.fld.has .ph{display:none}
+@keyframes blink{50%{opacity:0}}
+.smartBox{border-radius:6px;padding:14px 14px 14px;border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(120deg,#36D6C9,#B868FF) border-box;margin-bottom:10px}
+.sbHead{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:10px}
+.sbHead span:last-child{display:flex;align-items:center;gap:3px}
+.sbRow{display:flex;align-items:center;gap:8px}
+.minB{flex:1;height:46px;background:#DDE1E5;border-radius:4px;display:flex;align-items:center;padding:0 12px;font-size:14px;color:#56616B}
+.minB b{margin-left:auto;font-weight:400;font-size:15px;margin-right:6px}
+.sbRow .fld{flex:1;margin:0;height:46px;padding:0 12px}
+.sbRow .fld .val{font-size:15px}
+.bul{font-size:12.5px;line-height:1.6;color:#33404B;padding-left:12px}
+.bul li{margin-bottom:2px}
+.warn{background:#F6F7F9;margin:40px -16px -28px;padding:20px 16px 28px}
+.warn h4{font-size:13px;color:#56616B;font-weight:500;margin-bottom:6px}
+.warn li{font-size:12px;color:#7A858F;line-height:1.65;list-style:none;padding-left:10px;position:relative}
+.warn li:before{content:'•';position:absolute;left:0}
+/* confirm */
+.cfT{padding:24px 16px 20px;border-bottom:1px solid #EEF0F2}
+.cfL{font-size:13px;font-weight:500;padding:24px 16px 12px}
+.cfL b{color:#2B7BF2}
+.box{background:#F6F7F9;border-radius:4px;margin:0 16px;padding:18px 16px}
+.box .bt{display:flex;align-items:center;font-size:15px;font-weight:700;margin-bottom:12px}
+.box .bt span{margin-left:auto;font-size:13.5px;font-weight:400;color:#2B7BF2}
+.box .bt span.del{color:#F0484E;margin-right:16px;margin-left:auto}
+.box .bt span.del+span{margin-left:0}
+.kv{display:flex;font-size:13.5px;line-height:1.5;margin-top:8px}
+.kv .k{font-weight:500;flex:none;white-space:nowrap;margin-right:12px}
+.kv .k:before{content:'• '}
+.kv .v{margin-left:auto;text-align:right}
+.kv .k+.v.kw{text-align:left;color:#7A858F;font-size:13px;line-height:1.6;margin-left:0;flex:1}
+.done{align-items:center;justify-content:center;text-align:center}
+.done .ic{width:64px;height:64px;border-radius:50%;background:#2B7BF2;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.done h3{font-size:20px;line-height:1.45}
+.done p{font-size:13px;color:#7A858F;margin-top:8px}
+.done .homeB{margin-top:32px;background:#12B5AE;color:#fff;font-weight:700;font-size:15px;height:48px;padding:0 26px;border-radius:10px}
+/* guide */
+.spot{position:absolute;pointer-events:none;border:2.5px solid #12B5AE;border-radius:10px;z-index:40;transition:all .3s;display:none}
+.spot.dim{box-shadow:0 0 0 3000px rgba(18,24,30,.45)}
+.tip{position:absolute;z-index:45;background:#1B232B;color:#fff;font-size:13px;font-weight:500;padding:9px 30px 9px 12px;border-radius:8px;white-space:nowrap;display:none;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.tip b{color:#5FE3DC}
+.tip .cl{position:absolute;right:6px;top:50%;transform:translateY(-50%);color:#9AA4AD;font-size:15px;width:20px;height:20px;line-height:20px;text-align:center;pointer-events:auto}
+.tip:after{content:'';position:absolute;left:var(--ax,50%);transform:translateX(-50%);border:6px solid transparent}
+.tip.dn:after{top:-12px;border-bottom-color:#1B232B}
+.tip.up:after{bottom:-12px;border-top-color:#1B232B}
+.ringOn{animation:ring 1.5s infinite;position:relative;z-index:41}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(18,181,174,.65)}100%{box-shadow:0 0 0 12px rgba(18,181,174,0)}}
+.nudge{animation:ring 1.5s infinite,nud .5s}
+@keyframes nud{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.hint{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);background:#12B5AE;color:#fff;font-size:13.5px;font-weight:700;padding:9px 16px;border-radius:999px;z-index:50;display:none;box-shadow:0 4px 14px rgba(18,181,174,.4);animation:bob 1.2s ease-in-out infinite;white-space:nowrap}
+@keyframes bob{50%{transform:translateX(-50%) translateY(5px)}}
+.toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%);background:rgba(27,35,43,.9);color:#fff;font-size:13px;padding:9px 14px;border-radius:8px;z-index:55;display:none;white-space:nowrap}
+.press{animation:press .35s}
+@keyframes press{40%{transform:scale(.93)}}
+</style>
+</head>
+<body>
+<div class="wrap pre" id="wrap">
+ <div class="devBox" id="devBox">
+  <div class="device" id="device">
+   <div class="screen" id="screen">
+
+    <!-- COVER -->
+    <div class="view cover" id="vCover">
+     <div class="c1">우리가게클릭</div>
+     <div class="c2">키워드형 방식</div>
+     <div class="c3">신청 방법</div>
+     <button class="startB" data-act="start">시작하기</button>
+    </div>
+
+    <!-- STEP1 광고선택 -->
+    <div class="view off" id="v1">
+     <div class="hd"><svg class="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" stroke="#1B232B" stroke-width="2" stroke-linecap="round"/></svg><div class="t">광고·서비스 신청</div></div>
+     <div class="sc" id="sc1">
+      <div class="pg">
+       <div class="h1">원하는 광고·서비스를<br>모두 선택해 주세요</div>
+       <div class="cnt">전체상품 <span id="cnt5">0/5</span></div>
+
+       <div class="card">
+        <div class="crow"><div class="cb"></div><div class="nm">배민배달 <svg class="qm" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.6" fill="none" stroke="#1B232B" stroke-width="1.3"/><path d="M6.3 6.3a1.8 1.8 0 1 1 2.3 1.7c-.4.2-.6.5-.6.9v.4" fill="none" stroke="#1B232B" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="11.3" r=".8" fill="#1B232B"/></svg></div><div class="pr">건 당 <b>7.8%</b> + <b>배달비</b></div></div>
+        <div class="strip"><span>🛵 알뜰·한집배달 이용</span><span>🎧 광고, 배차, 고객응대 지원</span></div>
+        <ul class="lst">
+         <li>__CK__알뜰·한집배달 배민라이더 배차 제공</li>
+         <li>__CK__음식배달, 검색결과 등에 가게노출</li>
+         <li>__CK__고객 응대 전문 상담 제공</li>
+         <li class="g">__CK__고객 만족을 위한 기준 충족 시 배민클럽(알뜰·한집) 가게로 자동 선정</li>
+         <div class="n">*주문 1건 기준 (부가세 별도)</div>
+        </ul>
+        <div class="banner"><b>✔ 상생 요금제 적용 상품</b>배민배달 매출에 따라 중개이용료, 배달비 차등 적용<svg class="ar" width="8" height="14" viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="#5B3FE0" stroke-width="1.6"/></svg></div>
+       </div>
+
+       <div class="card">
+        <div class="crow"><div class="cb"></div><div class="nm">가게배달 __QM__</div><div class="pr">건 당 <b>6.8%</b></div></div>
+        <div class="strip"><span>🛵 가게배달 이용</span></div>
+        <ul class="lst">
+         <li>__CK__배달대행사/직접배달 이용 (배민라이더 미지원)</li>
+         <li>__CK__음식배달, 검색결과 등에 가게노출</li>
+         <li>__CK__광고 중개만 이용하는 상품</li>
+         <li class="g">__CK__배민클럽(가게배달) 배달팁 할인 이용 가능</li>
+         <div class="n">*주문 1건 기준 (부가세 별도)</div>
+        </ul>
+       </div>
+
+       <div class="card" id="ugcCard" style="margin-top:34px">
+        <div class="tagBlack">함께 사용하면 좋은 추가 광고</div>
+        <div class="crow" style="padding-top:22px"><div class="cb" id="cbUgc">__CB__</div><div class="nm">우리가게클릭</div><div class="pr"><b style="font-size:14px">클릭당 희망 광고금액</b></div></div>
+        <div class="sub">
+         <div class="crow"><div class="cb">__CB__</div><div class="nm">일반형 __QM__</div></div>
+         <div class="w"><span class="ad">AD</span>배민앱 곳곳에 가게를 한번 더 노출</div>
+         <ul class="lst"><li>__CK__배민배달 혹은 가게배달과 함께 사용</li><li>__CK__파트너님께서 설정한 월 예산 내 비용 소진</li><div class="n">*클릭 1건당 기준 (부가세 별도)</div></ul>
+        </div>
+        <div class="sub" id="kwType" data-act="kwType">
+         <div class="crow"><div class="cb" id="cbKw">__CB__</div><div class="nm">키워드형 __QM__</div></div>
+         <div class="w"><span class="ad">AD</span>고객이 검색한 키워드로 가게 노출</div>
+         <ul class="lst"><li>__CK__배민배달 혹은 가게배달과 함께 사용</li><li>__CK__파트너님께서 설정한 월 예산 내 비용 소진</li><div class="n">*클릭 1건당 기준 (부가세 별도)</div></ul>
+        </div>
+        <div class="foot">*일반형, 키워드형은 별도 예산과 희망가 설정</div>
+       </div>
+
+       <div class="card">
+        <div class="crow"><div class="cb"></div><div class="nm">픽업 __QM__</div><div class="pr">1건 당 <b>6.8%</b></div></div>
+        <div class="strip"><span>🥡 포장고객에게 가게노출</span><span>🍴 매장 식사 주문 가능</span></div>
+        <ul class="lst"><li>__CK__포장고객 전용 화면에 가게노출</li><li>__CK__매장에서 식사 주문도 설정 가능</li><div class="n">*주문 1건 기준 (부가세 별도)</div></ul>
+       </div>
+      </div>
+     </div>
+     <div class="ft"><button class="prev">__LT__ 이전</button><button class="go" id="btnApply" data-act="apply">신청하기</button></div>
+    </div>
+
+    <!-- STEP2~5 광고설정 -->
+    <div class="view off" id="v2">
+     <div class="hd"><svg class="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" stroke="#1B232B" stroke-width="2" stroke-linecap="round"/></svg><div class="t">광고·서비스 신청<small><b>5</b> / 8</small></div><div class="bar" style="width:62.5%"></div></div>
+     <div class="sc" id="sc2">
+      <div class="pg">
+       <div class="h1">우리가게클릭 키워드형<br>광고·서비스 설정</div>
+       <div class="sec" id="kwSec">
+        <div class="secT"><i>1</i>키워드를 선택해주세요</div>
+        <div class="kwBox" id="kwBox"></div>
+        <div class="kwNote"><div>키워드는 <b>최근 주문 데이터를 기반으로 제공</b>돼요. 주문 이력이 쌓이면 추천 키워드도 늘어나요.</div><div class="ct30"><b id="kwCnt">0</b>/30</div></div>
+       </div>
+       <div class="sec" id="modeSec">
+        <div class="secT"><i>2</i>희망가 조정방식</div>
+        <button class="mode smart" id="mSmart" data-act="mode" data-m="smart">
+         <div class="mt">__SP__ 스마트 모드 __QMG__</div>
+         <div class="md">최적화된 로직에 맞춰 30원부터 설정하신 최대 희망가 사이의 금액으로 자동으로 운영돼요.</div>
+         <div class="badge">스마트 모드 사용 시 가게 노출 약 2.3배↑ <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="none" stroke="#2B7BF2" stroke-width="1.2"/><path d="M6 5.3v3M6 3.4v.1" stroke="#2B7BF2" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+         <span class="rd"></span>
+        </button>
+        <button class="mode manual" id="mManual" data-act="mode" data-m="manual">
+         <div class="mt"><svg width="18" height="20" viewBox="0 0 18 20"><rect x="1" y="1" width="16" height="18" rx="3" fill="#1FA67A"/><rect x="4" y="4" width="10" height="4" rx="1" fill="#E8FFF6"/><g fill="#E8FFF6"><circle cx="5.5" cy="11.5" r="1.1"/><circle cx="9" cy="11.5" r="1.1"/><circle cx="12.5" cy="11.5" r="1.1"/><circle cx="5.5" cy="15" r="1.1"/><circle cx="9" cy="15" r="1.1"/><circle cx="12.5" cy="15" r="1.1"/></g></svg> 수동 설정 모드</div>
+         <div class="md">직접 설정한 희망가로 고정 운영돼요.</div>
+         <span class="rd"></span>
+        </button>
+       </div>
+       <div class="sec" id="budgetSec">
+        <div class="secT"><i>3</i>예산 및 희망가 <span style="font-weight:400;font-size:18px;margin-left:-2px">+</span> <small>부가세 별도</small></div>
+        <div class="fld" id="fBudget"><span class="lb">월 예산</span><span class="val"><span class="ph">5만~1000만원까지</span><span class="tx"></span><i class="caret"></i></span><span class="unit">원</span></div>
+        <div class="fld" id="fCpc"><span class="lb">클릭당 희망광고 금액</span><span class="val"><span class="ph">50원~ 1000원까지</span><span class="tx"></span><i class="caret"></i></span><span class="unit">원</span></div>
+        <div id="smartWrap" style="display:none">
+         <div class="smartBox">
+          <div class="sbHead"><span>클릭당 희망 광고금액</span><span>__SP__ 스마트 모드</span></div>
+          <div class="sbRow">
+           <div class="minB">최소<b>30</b>원</div><span style="color:#7A858F">~</span>
+           <div class="fld" id="fMax"><span class="lb" style="color:#A9B1B8">최대</span><span class="val"><span class="tx"></span><i class="caret"></i></span><span class="unit">원</span></div>
+          </div>
+         </div>
+         <ul class="bul">
+          <li>최대 희망가는 600원~1,000원사이로 설정가능해요.</li>
+          <li>스마트 모드의 희망가는 예산 소진 속도와 주문전환율, 요일·시간, 최소주문금액, 배달팁,개별 고객 행동 패턴 등 객관적인 데이터를 기반으로 산출돼요.</li>
+          <li>가게 노출과 주문을 최적화 하기 위해 희망가는 약 1시간마다 자동 조정돼요.</li>
+         </ul>
+        </div>
+       </div>
+       <div class="warn">
+        <h4>유의사항</h4>
+        <ul><li>고객이 가게를 클릭하면 설정한 금액만큼 광고 사용료가 발생해요.</li><li>우리가게클릭 광고 지면이 아닌 곳에서 클릭이 발생하면 과금되지않아요.</li><li>광고의 예산과 클릭당 희망금액 광고·서비스관리 메뉴에서 언제든지 변경할 수 있어요.</li></ul>
+       </div>
+      </div>
+     </div>
+     <div class="ft"><button class="prev">__LT__ 이전</button><button class="go" id="btnNext" data-act="next">다음</button></div>
+    </div>
+
+    <!-- STEP6 확인 -->
+    <div class="view off" id="v3">
+     <div class="hd"><svg class="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" stroke="#1B232B" stroke-width="2" stroke-linecap="round"/></svg><div class="t">광고·서비스 신청<small><b>6</b> / 8</small></div><div class="bar" style="width:75%"></div></div>
+     <div class="sc" id="sc3">
+      <div class="cfT"><div class="h1">아래와 같이<br>신청을 진행할게요</div></div>
+      <div class="cfL">공통 설정</div>
+      <div class="box"><div class="bt">광고·서비스 공통<span>수정</span></div><div class="kv"><span class="k">배달 최소주문금액</span><span class="v">1,000원</span></div></div>
+      <div class="cfL">개별 설정 <b>1</b></div>
+      <div class="box" id="cfCard">
+       <div class="bt">우리가게클릭 키워드형<span class="del">삭제</span><span>수정</span></div>
+       <div class="kv"><span class="k">예산금액</span><span class="v" id="cfBudget">300,000원</span></div>
+       <div class="kv"><span class="k">클릭당 희망 광고 금액</span><span class="v" id="cfCpc">1,000원</span></div>
+       <div class="kv" id="cfMaxRow"><span class="k">최대희망가</span><span class="v">1,000원</span></div>
+       <div class="kv"><span class="k">키워드</span><span class="v kw" id="cfKw"></span></div>
+      </div>
+      <div class="cfL">추가할 수 있는 광고·서비스 <b>1</b></div>
+      <div class="box" style="margin-bottom:30px"><div class="bt" style="margin:0">가게배달<span>추가 ＋</span></div></div>
+     </div>
+     <div class="ft"><button class="prev">__LT__ 이전</button><button class="go" id="btnConfirm" data-act="confirm" style="padding:0 24px">광고정보 확인</button></div>
+    </div>
+
+    <!-- DONE -->
+    <div class="view done off" id="vDone">
+     <div class="ic"><svg width="30" height="30" viewBox="0 0 30 30"><path d="M7 15.5l5.5 5.5L23.5 9.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+     <h3>우리가게클릭 키워드형<br>신청이 완료되었어요</h3>
+     <button class="homeB" data-act="restart">처음으로 돌아가기</button>
+    </div>
+
+    <div class="hint" id="hint" data-act="hint">↓ 아래로 스크롤해 보세요</div>
+    <div class="toast" id="toast">키워드는 최대 30개까지 선택할 수 있어요</div>
+   </div>
+  </div>
+ </div>
+
+ <div class="side">
+  <div class="coach"><span class="lb" id="cLb">STEP 1</span><div class="tx" id="cTx"></div><div class="nt" id="cNt"></div><div class="nt2" id="cNt2"></div></div>
+  <button class="again" data-act2="reset">처음부터 다시 보기</button>
+ </div>
+</div>
+
+<div class="spot" id="spot"></div>
+<div class="tip" id="tip"><span id="tipTx"></span><span class="cl" id="tipX">×</span></div>
+
+<script>
+/* ===== 타이밍 상수 (ms) ===== */
+const T={slide:480, autoScroll:500, beforeType:650, typeGap:110, betweenField:450, afterType:550, toStep5:200};
+
+/* ===== 아이콘 치환 ===== */
+const ICON={
+ CK:'<svg width="10" height="8" viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ CB:'<svg width="14" height="11" viewBox="0 0 14 11"><path d="M1.5 5.5l3.8 3.8L12.5 1.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ QM:'<svg class="qm" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.6" fill="none" stroke="#1B232B" stroke-width="1.3"/><path d="M6.3 6.3a1.8 1.8 0 1 1 2.3 1.7c-.4.2-.6.5-.6.9v.4" fill="none" stroke="#1B232B" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="11.3" r=".8" fill="#1B232B"/></svg>',
+ QMG:'<svg class="qm" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.6" fill="none" stroke="#8A949E" stroke-width="1.3"/><path d="M6.3 6.3a1.8 1.8 0 1 1 2.3 1.7c-.4.2-.6.5-.6.9v.4" fill="none" stroke="#8A949E" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="11.3" r=".8" fill="#8A949E"/></svg>',
+ SP:'<svg width="16" height="16" viewBox="0 0 16 16"><path d="M9 1.5l1.3 3.7L14 6.5l-3.7 1.3L9 11.5 7.7 7.8 4 6.5l3.7-1.3z" fill="#7FB6FF"/><path d="M4 9.5l.7 1.8 1.8.7-1.8.7L4 14.5l-.7-1.8-1.8-.7 1.8-.7z" fill="#B48CFF"/></svg>',
+ LT:'<svg width="8" height="14" viewBox="0 0 8 14"><path d="M7 1L1 7l6 6" fill="none" stroke="#2B7BF2" stroke-width="1.7" stroke-linecap="round"/></svg>'
+};
+document.getElementById('screen').innerHTML=document.getElementById('screen').innerHTML.replace(/__(CK|CB|QMG|QM|SP|LT)__/g,(m,k)=>ICON[k]);
+
+const $=s=>document.querySelector(s);
+const nb=t=>t.replace(/ (\S+)$/,' $1');
+
+/* ===== 키워드 ===== */
+const KW=['카페','브런치','라떼','말차','주스','아메리카노','커피','소금빵','모카','케이크','핸드드립','와플','블루베리요거트스무디','아인슈페너','버블티','밀크티','크루아상 샌드위치','프렌치토스트','레드벨벳케이크','마카롱','파니니','바닐라라떼','카푸치노','플랫화이트','돌체라떼','연유라떼','카라멜마키아또','콜드브루','디카페인커피','흑임자라떼','고구마라떼','초코라떼','레몬에이드','딸기에이드','얼그레이티','망고스무디','프라페','베이글','스콘','마들렌','휘낭시에','브라우니','티라미수','치즈케이크','디저트카페'];
+const CHK='<svg width="12" height="10" viewBox="0 0 12 10"><path d="M1 5l3.5 3.5L11 1.5" fill="none" stroke="#2B7BF2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$('#kwBox').innerHTML='<button class="chip" data-act="chip" data-k="__ALL__">'+CHK+'전체</button>'+KW.map(k=>'<button class="chip" data-act="chip" data-k="'+k+'">'+CHK+k+'</button>').join('');
+
+/* ===== 상태 ===== */
+let S, SCALE=1, gT, fT=[], tyT=[];
+function clearAll(){clearTimeout(gT);fT.forEach(clearTimeout);tyT.forEach(clearTimeout);fT=[];tyT=[];}
+const later=(fn,ms)=>{fT.push(setTimeout(fn,ms));};
+
+const COACH={
+ 1:['STEP 1','우리가게클릭 영역에서 키워드형을 선택하고 신청하기 버튼을 클릭해주세요.',''],
+ 2:['STEP 2','추천 키워드 중 가게를 노출시킬 검색 키워드를 최대 30개 선택해 주세요.',''],
+ 3:['STEP 3','희망가 조정 방식을 스마트 모드 또는 수동 설정 모드 중에서 선택해 주세요.',''],
+ '4smart':['STEP 4','월 예산 및 클릭당 최대 희망가를 입력하고, 다음 버튼을 눌러주세요.','※ 예시로 월 예산 30만 원, 클릭당 최대 희망가는 1천 원으로 설정해 볼게요.'],
+ '4manual':['STEP 4','월 예산 및 클릭당 희망 광고 금액을 입력하고, 다음 버튼을 눌러주세요.','※ 예시로 월 예산 30만 원, 클릭당 희망가는 1천 원으로 설정해 볼게요.'],
+ 6:['STEP 5','설정하신 내용을 확인한 뒤 광고정보 확인 버튼을 클릭하시면 신청이 완료됩니다.',''],
+ done:['완료','우리가게클릭 키워드형 신청이 완료되었어요.','']
+};
+function coach(){
+ const k=(S.step==4||S.step==5)?'4'+S.mode:(S.step=='1b'?1:S.step);
+ const c=COACH[k]; if(!c) return;
+ $('#cLb').textContent=c[0]; $('#cTx').textContent=nb(c[1]); $('#cNt').textContent=c[2]?c[2].split('\n').map(nb).join('\n'):''; $('#cNt2').textContent=c[3]?nb(c[3]):'';
+}
+
+/* ===== 안내 대상 ===== */
+function G(){
+ switch(S.step){
+  case 1: return {t:'#kwType',tip:'<b>키워드형</b>을 선택해 보세요',dim:1};
+  case '1b': return {t:'#btnApply',tip:'<b>신청하기</b> 버튼을 눌러보세요',ring:1,up:1};
+  case 2: return S.kws.length? {t:'#kwBox',hint:1}:{t:'#kwBox',tip:'노출할 <b>키워드</b>를 눌러 선택해 보세요',dim:1,up:1,al:'r'};
+  case 3: return {t:'#modeSec',tip:'<b>희망가 조정 방식</b>을 선택해 보세요',dim:1,up:1};
+  case 4: return {t:'#budgetSec'};
+  case 5: return {t:'#btnNext',tip:'<b>다음</b> 버튼을 눌러주세요',ring:1,up:1};
+  case 6: return {t:'#btnConfirm',tip:'<b>광고정보 확인</b> 버튼을 눌러보세요',ring:1,up:1};
+ }
+ return null;
+}
+const spot=$('#spot'), tip=$('#tip'), hint=$('#hint');
+function rel(el,cont){
+ const r=el.getBoundingClientRect(), c=cont.getBoundingClientRect();
+ return {x:(r.left-c.left)/SCALE+(cont.scrollLeft||0), y:(r.top-c.top)/SCALE+(cont.scrollTop||0), w:r.width/SCALE, h:r.height/SCALE};
+}
+function guide(){
+ clearTimeout(gT);
+ spot.style.display='none'; tip.style.display='none'; hint.style.display='none';
+ document.querySelectorAll('.ringOn').forEach(e=>e.classList.remove('ringOn','nudge'));
+ const g=G(); if(!g) return;
+ const el=$(g.t); if(!el) return;
+ const cont=el.closest('.sc')||el.closest('.view');
+ const p=rel(el,cont), pad=4;
+ if(spot.parentNode!==cont) cont.appendChild(spot);
+ Object.assign(spot.style,{left:(p.x-pad)+'px',top:(p.y-pad)+'px',width:(p.w+pad*2)+'px',height:(p.h+pad*2)+'px',display:'block'});
+ spot.classList.toggle('dim',!!g.dim);
+ if(g.ring) el.classList.add('ringOn');
+ if(g.tip && S.tipClosed!==S.step){
+  if(tip.parentNode!==cont) cont.appendChild(tip);
+  $('#tipTx').innerHTML=g.tip; tip.style.display='block'; tip.style.visibility='hidden';
+  const tw=tip.offsetWidth, th=tip.offsetHeight;
+  const vTop=cont.scrollTop||0, vBot=vTop+cont.clientHeight;
+  let below=p.y+p.h+12, above=p.y-th-12, y, dn;
+  if(g.up===1){ y=above; dn=false; if(y<vTop+4 && below+th<vBot){y=below;dn=true;} }
+  else { y=below; dn=true; if(below+th>vBot-4 && above>vTop){y=above;dn=false;} }
+  let x=g.al==='r'?p.x+p.w-tw:p.x+p.w/2-tw/2; x=Math.max(8,Math.min(360-8-tw,x));
+  const ax=Math.max(14,Math.min(tw-14,p.x+p.w/2-x));
+  tip.style.setProperty('--ax',ax+'px');
+  tip.className='tip '+(dn?'dn':'up');
+  Object.assign(tip.style,{left:x+'px',top:y+'px',visibility:'visible'});
+ }
+ if(g.hint){ hint.style.display='block'; }
+}
+function reguide(){clearTimeout(gT); gT=setTimeout(guide,90);}
+['#sc1','#sc2','#sc3'].forEach(s=>$(s).addEventListener('scroll',()=>{
+ if(S.step==2 && S.kws.length) checkModeVisible();
+ reguide();
+},{passive:true}));
+$('#kwBox').addEventListener('scroll',reguide,{passive:true});
+$('#tipX').addEventListener('click',e=>{e.stopPropagation();S.tipClosed=S.step;tip.style.display='none';});
+
+function checkModeVisible(){
+ const sc=$('#sc2'), m=$('#mManual');
+ const r=m.getBoundingClientRect(), c=sc.getBoundingClientRect();
+ if(r.bottom<=c.bottom-4) go(3);
+}
+
+/* ===== 전환 ===== */
+const VIEWS=['vCover','v1','v2','v3','vDone'];
+function show(id){
+ const i=VIEWS.indexOf(id);
+ VIEWS.forEach((v,j)=>{const e=$('#'+v); e.classList.remove('off','offL'); if(j>i) e.classList.add('off'); else if(j<i) e.classList.add('offL');});
+}
+function go(st){S.step=st; coach(); guide();}
+function smoothTo(sc,y,dur=T.autoScroll){
+ const rid=S.run, s0=sc.scrollTop, d=Math.max(0,Math.min(y,sc.scrollHeight-sc.clientHeight))-s0, t0=performance.now();
+ function f(now){const k=Math.min(1,(now-t0)/dur), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; sc.scrollTop=s0+d*e; if(k<1 && S.run===rid) requestAnimationFrame(f);}
+ requestAnimationFrame(f);
+}
+function nudge(){
+ const g=G(); if(!g||!g.ring) { if(g&&g.tip){S.tipClosed=null;guide();} return;}
+ const el=$(g.t); el.classList.remove('nudge'); void el.offsetWidth; el.classList.add('nudge');
+}
+function toast(){const t=$('#toast'); t.style.display='block'; clearTimeout(t._t); t._t=setTimeout(()=>t.style.display='none',1600);}
+
+/* ===== 타이핑 ===== */
+function typeInto(fld,digits,cb){
+ const tx=fld.querySelector('.tx'); fld.classList.add('focus'); tx.textContent='';
+ let i=0;
+ const step=()=>{
+  i++; tx.textContent=Number(digits.slice(0,i)).toLocaleString('ko-KR'); fld.classList.add('has');
+  if(i<digits.length) tyT.push(setTimeout(step,T.typeGap));
+  else tyT.push(setTimeout(()=>{fld.classList.remove('focus');cb&&cb();},T.betweenField));
+ };
+ tyT.push(setTimeout(step,T.typeGap*2));
+}
+function runStep4(){
+ S.busy=true; go(4);
+ const sc=$('#sc2');
+ const sec=$('#budgetSec');
+ later(()=>{smoothTo(sc, sec.offsetTop-26); later(reguide,T.autoScroll+30);},150);
+ later(()=>{
+  typeInto($('#fBudget'),'300000',()=>{
+   const f2=S.mode=='smart'?$('#fMax'):$('#fCpc');
+   typeInto(f2,'1000',()=>{
+    later(()=>{S.busy=false; go(5);},T.afterType);
+   });
+  });
+ },150+T.autoScroll+T.beforeType);
+}
+
+/* ===== 클릭 처리 ===== */
+$('#screen').addEventListener('click',e=>{
+ const a=e.target.closest('[data-act]');
+ if(S.busy) return;
+ if(!a){ nudge(); return; }
+ const act=a.dataset.act;
+ if(act==='start' && S.step==='cover'){
+  $('#wrap').classList.remove('pre'); fit(); show('v1'); S.step=1; coach();
+  later(()=>{smoothTo($('#sc1'), $('#ugcCard').offsetTop-12, 700); later(guide,760);}, T.slide);
+  return;
+ }
+ if(act==='kwType' && S.step===1){
+  a.classList.add('on','press'); $('#cbKw').classList.add('on'); $('#cbUgc').classList.add('on'); $('#cnt5').textContent='1/5';
+  later(()=>go('1b'),350); return;
+ }
+ if(act==='apply' && S.step==='1b'){
+  show('v2'); S.step=2; coach(); spot.style.display='none'; tip.style.display='none';
+  later(guide,T.slide); return;
+ }
+ if(act==='chip' && (S.step===2||S.step===3)){
+  const k=a.dataset.k;
+  if(k==='__ALL__'){
+   if(a.classList.contains('on')){S.kws=[];}
+   else {S.kws=KW.slice(0,30);}
+  } else {
+   const i=S.kws.indexOf(k);
+   if(i>-1) S.kws.splice(i,1);
+   else { if(S.kws.length>=30){toast();return;} S.kws.push(k); }
+  }
+  renderKw();
+  if(S.step===2){ if(S.kws.length) {S.tipClosed=null; guide(); checkModeVisible();} else guide(); }
+  return;
+ }
+ if(act==='hint' && S.step===2){ smoothTo($('#sc2'), $('#modeSec').offsetTop-12, 600); return; }
+ if(act==='mode' && (S.step===3 || (S.step===2 && S.kws.length))){
+  S.mode=a.dataset.m; a.classList.add('on','press');
+  if(S.mode==='smart'){ $('#fCpc').style.display='none'; $('#smartWrap').style.display='block'; }
+  runStep4(); return;
+ }
+ if(act==='next' && S.step===5){
+  fillConfirm(); show('v3'); S.step=6; coach(); spot.style.display='none'; tip.style.display='none';
+  later(guide,T.slide); return;
+ }
+ if(act==='confirm' && S.step===6){ show('vDone'); go('done'); return; }
+ if(act==='restart'){ reset(); return; }
+ nudge();
+});
+function renderKw(){
+ document.querySelectorAll('#kwBox .chip').forEach(c=>{
+  const k=c.dataset.k;
+  c.classList.toggle('on', k==='__ALL__'? S.kws.length===30 && KW.slice(0,30).every(x=>S.kws.includes(x)) : S.kws.includes(k));
+ });
+ $('#kwCnt').textContent=S.kws.length;
+}
+function fillConfirm(){
+ $('#cfBudget').textContent='300,000원';
+ if(S.mode==='smart'){ $('#cfCpc').textContent='스마트모드'; $('#cfMaxRow').style.display='flex'; }
+ else { $('#cfCpc').textContent='1,000원'; $('#cfMaxRow').style.display='none'; }
+ const ordered=KW.filter(k=>S.kws.includes(k));
+ $('#cfKw').textContent=ordered.join(', ');
+ $('#sc3').scrollTop=0;
+}
+
+/* ===== 리셋 ===== */
+function reset(){
+ clearAll();
+ S={step:'cover',mode:null,kws:[],busy:false,tipClosed:null,run:Math.random()}; S.anim=S.run;
+ $('#wrap').classList.add('pre');
+ document.querySelectorAll('.cb.on,.sub.on,.mode.on,.fld.focus,.fld.has').forEach(e=>e.classList.remove('on','focus','has'));
+ document.querySelectorAll('.press').forEach(e=>e.classList.remove('press'));
+ document.querySelectorAll('.fld .tx').forEach(e=>e.textContent='');
+ $('#cnt5').textContent='0/5'; $('#fCpc').style.display=''; $('#smartWrap').style.display='none';
+ ['#sc1','#sc2','#sc3'].forEach(s=>$(s).scrollTop=0); $('#kwBox').scrollTop=0;
+ renderKw();
+ spot.style.display='none'; tip.style.display='none'; hint.style.display='none';
+ document.querySelectorAll('.ringOn').forEach(e=>e.classList.remove('ringOn','nudge'));
+ show('vCover'); fit();
+}
+document.querySelector('[data-act2="reset"]').addEventListener('click',reset);
+
+/* ===== 크기 맞춤 ===== */
+function fit(){
+ const pc=innerWidth>=600;
+ SCALE=pc?0.74:Math.min(0.86,(innerWidth-32)/376);
+ $('#device').style.transform='scale('+SCALE+')';
+ Object.assign($('#devBox').style,{width:376*SCALE+'px',height:706*SCALE+'px'});
+}
+addEventListener('resize',()=>{fit();reguide();});
+reset();
+</script>
+</body>
+</html>
